@@ -10,7 +10,8 @@ function renderItems(){
     const text = document.createElement('p')
     //create p element to show items on div
     text.textContent = item
-    item.onclick = () => removeItem(idx)
+    text.onclick = () => removeItem(idx)
+    console.log(text)
     //set to display p value to the input element
 
     //create specific divs for each item element
@@ -25,6 +26,7 @@ function addItem(){
     const value = inputValue.value
     items.push(value)
     renderItems()
+    inputValue.value = ""
 }
 function removeItem(idx){
     items.splice(idx , 1)
