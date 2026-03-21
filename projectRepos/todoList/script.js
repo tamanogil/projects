@@ -1,6 +1,7 @@
 let items = []
 const itemDiv = document.getElementById("items")
 let inputValue = document.getElementById('input')
+let storageKey = ""
 
 
 function renderItems(){
@@ -27,8 +28,24 @@ function addItem(){
     items.push(value)
     renderItems()
     inputValue.value = ""
+    saveItems()
 }
 function removeItem(idx){
     items.splice(idx , 1)
     renderItems()
+    saveItems()
 }
+
+function saveItems(){
+    const stringifyItems  = JSON.stringify(items)
+    localStorage.setItem(storageKey, stringifyItems)
+}
+
+function loadItems(){
+    const originalArray = localStorage.getItem(storageKey)
+    if(originalArray) items = JSON.parse(originalArray)
+    renderItems()
+}
+
+document.addEventListener("DOMContentLoaded", loadItems)
+
