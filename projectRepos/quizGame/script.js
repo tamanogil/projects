@@ -40,6 +40,7 @@ const questions = [
 const questionElement = document.getElementById("question")
 const answerButtons = document.getElementById("answer-buttons")
 const nextButton = document.getElementById("next-btn")
+const result = document.getElementById('result')
 
 let currentQuestionIndex = 0
 let score = 0 
@@ -69,6 +70,7 @@ function showQuestion(){
     })
 }
 function resetState(){
+    result.textContent = ""
     nextButton.style.display = "none"
     while(answerButtons.firstChild){
         answerButtons.removeChild(answerButtons.firstChild)
@@ -77,8 +79,10 @@ function resetState(){
 
 function selectAnswer(e){
     const selectedBtn = e.target
-    const isCorrect = selectedBtn.dataset.correct == true
-    if(isCorrect) {score++
+    const isCorrect = selectedBtn.dataset.correct === "true"
+    if(isCorrect) {
+        score++
+        result.textContent = "That is correct"
     console.log('Correct')}
     else{
         console.log('Incorrect')
@@ -110,4 +114,4 @@ nextButton.addEventListener('click', () => {
         startQuiz()
     }
 })
-startQuiz()``
+startQuiz()
