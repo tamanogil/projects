@@ -86,6 +86,7 @@ function selectAnswer(e){
     console.log('Correct')}
     else{
         console.log('Incorrect')
+        result.textContent = "Wrong answer"
     }
     Array.from(answerButtons.children).forEach(button => {
         button.disabled = true
@@ -95,6 +96,7 @@ function selectAnswer(e){
 function showScore(){
     resetState()
     questionElement.innerHTML = `You scored ${score}`
+    nextButton.textContent = "Play Again"
     nextButton.style.display = 'block';
 }
 function handleNextButton(){
