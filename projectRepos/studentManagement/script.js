@@ -1,9 +1,10 @@
 class Student {
-    constructor(id, name, age , grade , hobbies){
+    constructor(id, firstName, lastName , mobileNo , email , hobbies){
         this.id = id
-        this.name = name
-        this.age = age
-        this.grade = grade
+        this.firstName = firstName
+        this.lastName = lastName
+        this.mobileNo = mobileNo
+        this.email = email
         this.hobbies = hobbies
     }
 }
@@ -24,12 +25,14 @@ searchInputEl.addEventListener('input', () => {
 
     recordDisplayEl.innerHTML = ''; 
     recordDisplayEl.style.display = 'block';
+    if(query === ""){
+        studentsArr.forEach(s => renderItems(s))
+        return
+    }
 
-
-    const filteredStudents = studentsArr.filter(s => s.name.toLowerCase().includes(query) || 
-        s.id.toString().includes(query))
-
-    filteredStudents.forEach(s => renderItems(s))
+    const filteredStudents = studentsArr.filter(s => s.firstName.toLowerCase().includes(query) 
+                            || s.lastName.toLowerCase().includes(query) || s.id.toString().includes(query))
+        filteredStudents.forEach(s => renderItems(s))
     }
 )
 addStudentBtnEl.addEventListener('click',  addStudent)
@@ -39,24 +42,27 @@ recordDisplayEl.style.display = 'none'
 
 function addStudent(){
     
-    let userId = prompt('Enter ID')
-     if(userId == null || userId.trim() == "" || isNaN(parseInt(userId))){
-        alert("You've entered an invalid ID.")
+    const lastId = studentsArr.length > 0 ? Math.max(...studentsArr.map(s => Number(s.id))) 
+                                        : 0
+    let userId = lastId + 1
+
+    let firstName = prompt('Enter First Name')
+    if(firstName == null || firstName.trim() == "" ){
+        alert("You've entered an invalid first name.")
         return
     }
-    let userName = prompt('Enter Name')
-    if(userName == null || userName.trim() == "" ){
-        alert("You've entered an invalid name.")
+    let lastName = prompt('Enter Last Name')
+    if(lastName == null || lastName.trim() == ""){
+        alert("You've entered an invalid last name.")
+    }
+    let mobileNo = prompt('Enter Mobile No.')
+    if(mobileNo == null || mobileNo.trim() == "" || isNaN(parseInt(mobileNo))){
+        alert("You've entered an invalid mobile no.")
         return
     }
-    let userAge = prompt('Enter Age')
-    if(userAge == null || userAge.trim() == "" || isNaN(parseInt(userAge))){
-        alert("You've entered an invalid age.")
-        return
-    }
-    let userGrade = prompt('Enter Grade')
-    if(userGrade == null || userGrade.trim() == "" || isNaN(parseInt(userGrade))){
-        alert("You've entered an invalid grade.")
+    let email = prompt('Enter Email')
+    if(email == null || email.trim() == ""){
+        alert("You've entered an invalid email.")
         return
     }
     let userHobby = prompt('Enter Hobbies')
@@ -64,7 +70,7 @@ function addStudent(){
         alert("You've entered an invalid hobbies")
         return
     }
-    const newStudent = new Student(userId, userName, userAge,userGrade,
+    const newStudent = new Student(userId, firstName, lastName, mobileNo, email,
         userHobby)
     const userExists = studentsArr.some(s => s.id === userId)
     if(userExists){
@@ -79,8 +85,8 @@ function addStudent(){
 function renderItems(students){
 const myDiv = document.createElement("div");
 const deleteBtn = document.createElement("button");
-    myDiv.textContent = `ID: ${students.id} | Name: ${students.name} | Age: ${students.age} | Grade: ${students.grade} |
-    Hobbies: ${students.hobbies}`
+    myDiv.textContent = `ID: ${students.id} | First Name: ${students.firstName} | Last Name: ${students.lastName} | Mobile No: ${students.mobileNo} 
+    | Email: ${students.email} | Hobbies: ${students.hobbies}`
     deleteBtn.textContent = "delete"
 
     deleteBtn.onclick = () => {
