@@ -1,11 +1,11 @@
 class Student {
-    constructor(id, firstName, lastName , mobileNo , email , hobbies){
+    constructor(id, firstName, lastName , mobileNo , email , yearLevel){
         this.id = id
         this.firstName = firstName
-        this.lastName = lastName
+        this.lastName = lastName    
         this.mobileNo = mobileNo
         this.email = email
-        this.hobbies = hobbies
+        this.yearLevel = yearLevel
     }
 }
 let studentsArr = JSON.parse(localStorage.getItem('students')) || []
@@ -47,34 +47,25 @@ function addStudent(){
     let userId = lastId + 1
 
     let firstName = prompt('Enter First Name')
-    if(firstName == null || firstName.trim() == "" ){
-        alert("You've entered an invalid first name.")
-        return
-    }
     let lastName = prompt('Enter Last Name')
-    if(lastName == null || lastName.trim() == ""){
-        alert("You've entered an invalid last name.")
-    }
-    let mobileNo = prompt('Enter Mobile No.')
-    if(mobileNo == null || mobileNo.trim() == "" || isNaN(parseInt(mobileNo))){
-        alert("You've entered an invalid mobile no.")
-        return
-    }
     let email = prompt('Enter Email')
-    if(email == null || email.trim() == ""){
-        alert("You've entered an invalid email.")
+
+    if(!lastName || !firstName || !email || typeof Number(lastName) !== 'string' 
+        || typeof Number(firstName) !== 'string' || typeof Number(email) !== 'string'){
+        alert("You've entered an invalid name or email.")
         return
     }
-    let userHobby = prompt('Enter Hobbies')
-    if(userHobby == null || userHobby.trim() == ""){
-        alert("You've entered an invalid hobbies")
+
+    let mobileNo = prompt('Enter Mobile No.')
+    let yearLevel = prompt('Enter Year Level')
+    if(!mobileNo || ! yearLevel || isNaN(parseInt(mobileNo)) ||isNaN(parseInt(yearLevel))){
+        alert("You've entered an invalid mobile no or year level.")
         return
     }
-    const newStudent = new Student(userId, firstName, lastName, mobileNo, email,
-        userHobby)
-    const userExists = studentsArr.some(s => s.id === userId)
-    if(userExists){
-        alert("You've entered a user Id that already existed")
+    const newStudent = new Student(userId, firstName, lastName, mobileNo, email, yearLevel)
+    const confirmSave = confirm(`Do you want to save student ID: ${userId}?`)
+    if(!confirmSave){
+        alert(`Student ID: ${userId} not saved`)
         return
     }
     studentsArr.push(newStudent)
@@ -86,7 +77,7 @@ function renderItems(students){
 const myDiv = document.createElement("div");
 const deleteBtn = document.createElement("button");
     myDiv.textContent = `ID: ${students.id} | First Name: ${students.firstName} | Last Name: ${students.lastName} | Mobile No: ${students.mobileNo} 
-    | Email: ${students.email} | Hobbies: ${students.hobbies}`
+    | Email: ${students.email} | Year Level: ${students.yearLevel}`
     deleteBtn.textContent = "delete"
 
     deleteBtn.onclick = () => {
