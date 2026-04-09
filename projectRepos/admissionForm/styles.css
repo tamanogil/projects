@@ -1,0 +1,23 @@
+*{
+    background: #96abb590;
+    display: flex;
+    flex-direction: column;
+}
+#container{
+    padding: 1rem;
+}
+#notes{
+    padding: 1rem;
+    display: inline-block;
+    background: rgb(188, 223, 241);
+    border: 1px solid rgb(0, 157, 255);
+}
+h3{
+    background: rgb(188, 223, 241);
+    font-size: 25px;
+    margin: none;
+    font-style: normal;
+}
+li{
+    background: rgb(188, 223, 241);
+}
