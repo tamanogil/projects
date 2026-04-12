@@ -18,7 +18,6 @@ function renderItems(){
     //create specific divs for each item element
     itemDiv.appendChild(text)
     itemDiv.appendChild(container)
-    
     //set items div to an empty string
     }
 }
