@@ -1,10 +1,13 @@
 const searchFormEl = document.getElementById("searchForm")
 const imageDisplayEl = document.getElementById("imageDisplay")
 const searchBoxEl = document.getElementById('searchBox')
+const showMoreBtn = document.getElementById('showMore')
 const accessKey = ""
 
 let keyword = ""
 let page = 1
+
+showMoreBtn.style.display= 'none'
 
 async function searchImages(){
     keyword = searchBoxEl.value
@@ -13,6 +16,10 @@ async function searchImages(){
     const response = await fetch(url)
     const data = await response.json()
     const results = data.results
+
+    if(page === 1){
+        imageDisplayEl.innerHTML = ""
+    }
 
     results.map((e) => {
         const image = document.createElement('img');
@@ -23,9 +30,17 @@ async function searchImages(){
 
         imageLink.appendChild(image)
         imageDisplayEl.appendChild(imageLink)
+        
+        showMoreBtn.style.display = 'block'
     })
+    showMoreBtn.style.display = 'block'
 }
+showMoreBtn.addEventListener('click', showMore)
 
+function showMore(){
+    page++
+    searchImages()
+}
 searchFormEl.addEventListener("submit", (e) => {
     e.preventDefault();
     page = 1
