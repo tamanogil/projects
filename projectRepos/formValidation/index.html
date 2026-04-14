@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=s, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="container">
+        <form>
+            <div class="inputGroup">
+                <label for="fullName">Full name</label>
+                <input type="text" placeholder="Enter your name" id="name" onkeyup="handleName()">
+                <span id="nameError">Error</span>
+            </div>
+            <div class="inputGroup">
+                <label for="phoneNumber" id="number">Phone No.</label>
+                <input type="text" placeholder="123 456 7890">
+                <span id="phoneError"></span>
+            </div>
+            <div class="inputGroup">
+                <label for="emailId" id="email">Email Id</label>
+                <input type="" placeholder="Enter Email">
+                <span id="emailError"></span>
+            </div>
+            <div class="inputGroup">
+                <label for="yourMessage" id="message">Your Message</label>
+                <input type="text" placeholder="Enter your message">
+                <span id="messageError"></span>
+            </div>
+        </form>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
