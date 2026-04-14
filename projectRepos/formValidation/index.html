@@ -11,23 +11,27 @@
         <form>
             <div class="inputGroup">
                 <label for="fullName">Full name</label>
-                <input type="text" placeholder="Enter your name" id="name" onkeyup="handleName()">
-                <span id="nameError">Error</span>
+                <input type="text" placeholder="Enter your name" id="name" onkeyup="handleName()" class="inputBox">
+                <span id="nameError"></span>
             </div>
             <div class="inputGroup">
-                <label for="phoneNumber" id="number">Phone No.</label>
-                <input type="text" placeholder="123 456 7890">
+                <label for="phoneNumber">Phone No.</label>
+                <input type="text" placeholder="123 456 7890" id="number" onkeyup="handlePhone()" class="inputBox">
                 <span id="phoneError"></span>
             </div>
             <div class="inputGroup">
-                <label for="emailId" id="email">Email Id</label>
-                <input type="" placeholder="Enter Email">
+                <label for="emailId">Email Id</label>
+                <input type="" placeholder="Enter Email" onkeyup="handleEmail()" id="email" class="inputBox">
                 <span id="emailError"></span>
             </div>
             <div class="inputGroup">
-                <label for="yourMessage" id="message">Your Message</label>
-                <input type="text" placeholder="Enter your message">
+                <label for="yourMessage">Your Message</label>
+                <input type="text" id="message" placeholder="Enter your message" onkeyup="handleMessage()" class="inputBoxMessage">
                 <span id="messageError"></span>
+            </div>
+            <div class="submitBtn" onclick="return validateForm()">
+            <button id="submit">Submit</button>
+            <span id="validate"></span>
             </div>
         </form>
     </div>

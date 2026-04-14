@@ -1,5 +1,5 @@
 body{
-    background: gray;
+    background: rgb(20, 20, 67);
     display: flex;
     justify-content: center;
     align-items: center;  
@@ -11,11 +11,43 @@ body{
     align-items: center;
     border: 1px solid black;
     border-radius: 10px;
-    height: 20%;
-    width: 20%;
+    height: 40%;
+    width: 23%;
     margin: 10px;
-    padding: 20px
+    padding: 20px;
+    background-color: white;
 }
 .inputGroup{
-    padding: 10px;
+    margin: 20px;
+}
+.inputBox{
+    border: none;            
+    border-bottom: 2px solid #000; 
+    outline: none;             
+    background: transparent;   
+    padding: 5px;
+    margin-left: 2rem;
+    width: 14rem;
+}
+.inputBoxMessage{
+    border: none;            
+    border-bottom: 2px solid #000; 
+    outline: none;             
+    background: transparent;   
+    padding: 5px ;
+    width: 10rem;
+    height: 10rem;
+    width: 15rem; 
+    margin-left: 1rem;
+}
+.submitBtn{
+    display: flex;
+    justify-content: space-between;
+}
+#submit{
+    margin-left: 8rem;
+    width: 9rem;
+    height: 2rem;
+    color: white;
+    background: rgb(20, 20, 67);
 }
